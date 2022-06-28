@@ -146,18 +146,29 @@ def main():
         #clock used to determine game speed
         clock.tick(10)
 
+        #handle_keys used to detect keyboard presses
         snake.handle_keys()
+        #draw the game area
         drawGrid(surface)
+        #move the snake
         snake.move()
+        #if snake head position is same as food position add length, score and new food
         if snake.get_head_position() == food.position:
             snake.length += 1
             snake.score += 1
             food.randomize_position()
+        #draw new snake
         snake.draw(surface)
+        #draw new food
         food.draw(surface)
- 
+
+        #draw the screen
         screen.blit(surface, (0, 0))
+        #text to show the score
         text = myfont.render('Score {0}'.format(snake.score), 1, (0, 0, 0))
+        #draw the score text
         screen.blit(text, (5, 10))
+        #update the game
         pygame.display.update()
+#run the main function to play the game
 main()
